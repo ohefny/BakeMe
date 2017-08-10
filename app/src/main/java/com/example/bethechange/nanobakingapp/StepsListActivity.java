@@ -60,6 +60,8 @@ public class StepsListActivity extends AppCompatActivity {
             mTwoPane = true;
         }
         setTitle(mRecipe.getName());
+        TextView testTV = (TextView) findViewById(R.id.testItemClick);
+        testTV.setText(mRecipe.getName());
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
@@ -149,13 +151,13 @@ public class StepsListActivity extends AppCompatActivity {
             return mValue.getSteps().size()+mValue.getIngredients().size();
         }
 
-        public class IngredientsViewHolder extends RecyclerView.ViewHolder {
-            public final View mView;
-            public  Ingredient item;
-            public final TextView ingredientTitle;
-            public final TextView ingredientQuantity;
-            public final TextView ingredientMeasure;
-            public IngredientsViewHolder(View view) {
+        class IngredientsViewHolder extends RecyclerView.ViewHolder {
+             final View mView;
+             Ingredient item;
+             final TextView ingredientTitle;
+             final TextView ingredientQuantity;
+             final TextView ingredientMeasure;
+             IngredientsViewHolder(View view) {
                 super(view);
                 mView = view;
                 ingredientTitle = (TextView) view.findViewById(R.id.ingredient_title);
@@ -164,12 +166,12 @@ public class StepsListActivity extends AppCompatActivity {
             }
 
         }
-        public class StepViewHolder extends RecyclerView.ViewHolder {
-            public final View mView;
-            public final TextView mStepTitle;
-            public  Step mItem;
+        class StepViewHolder extends RecyclerView.ViewHolder {
+            final View mView;
+            final TextView mStepTitle;
+            Step mItem;
 
-            public StepViewHolder(View view) {
+             StepViewHolder(View view) {
                 super(view);
                 mView = view;
                 mStepTitle = (TextView) view.findViewById(R.id.step_title);

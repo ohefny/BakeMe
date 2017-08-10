@@ -41,17 +41,17 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
     }
 
     @Override
-    public void onBindViewHolder(final RecipeViewHolder holder,int position) {
+    public void onBindViewHolder(final RecipeViewHolder holder, final int position) {
         bind=true;
         holder.recipeTitle.setText(recipes.get(position).getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onListItemClicked(holder.getAdapterPosition());
+                mListener.onListItemClicked(position);
 
             }
         });
-        if(!recipes.get(holder.getAdapterPosition()).isFav())
+        if(!recipes.get(position).isFav())
             holder.favBox.setChecked(false);
         else{
             holder.favBox.setChecked(true);
@@ -62,12 +62,12 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                           if(b)
                           {
-                              if(recipes.get(holder.getAdapterPosition()).isFav())
+                              if(recipes.get(position).isFav())
                                   return;
-                              mListener.onFavChanged(holder.getAdapterPosition());
+                              mListener.onFavChanged(position);
                           }
                         else {
-                            holder.favBox.setChecked(recipes.get(holder.getAdapterPosition()).isFav());
+                            holder.favBox.setChecked(recipes.get(position).isFav());
                         }
             }
         });

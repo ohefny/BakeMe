@@ -48,8 +48,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         mRecipes=new Gson().fromJson(getIntent().getStringExtra(RECIPES_KEY),new TypeToken<ArrayList<Recipe>>(){}.getType());
         favID=PrefUtils.getFavoriteId(this);
+
+        if(mRecipes==null)
+            mRecipes=new ArrayList<>();
+
         markFavItem();
-        if(mRecipes.isEmpty())
+        if(mRecipes==null||mRecipes.isEmpty())
             mProgressDialog.show();
         LinearLayoutManager mLayoutManger = new GridLayoutManager(this ,calculateNoOfColumns(this,300));
         mAdapter = new RecipesAdapter(mRecipes ,this);
@@ -79,11 +83,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private void showErrorView(int error_msg) {
 
-        Snackbar mySnackbar = Snackbar.make(findViewById(R.id.main_container), getString(error_msg), Snackbar.LENGTH_LONG);
+        final Snackbar mySnackbar = Snackbar.make(findViewById(R.id.main_container), getString(error_msg), Snackbar.LENGTH_INDEFINITE);
         mySnackbar.setAction(getString(R.string.refresh), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                    refresh();
+                    mySnackbar.dismiss();
                 }
             });
         mySnackbar.show();
@@ -122,8 +127,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private void markFavItem() {
         for(Recipe r:mRecipes)
             r.setFav(r.getId() == favID);
-
-
 
     }
 
