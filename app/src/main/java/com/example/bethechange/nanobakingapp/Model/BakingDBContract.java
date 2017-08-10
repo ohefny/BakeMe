@@ -3,7 +3,7 @@ package com.example.bethechange.nanobakingapp.Model;
 import android.provider.BaseColumns;
 
 /**
- * Created by Ahmed on 6/3/2017.
+ * Created by BeTheChange on 8/10/2017
  */
 
 public final class BakingDBContract {

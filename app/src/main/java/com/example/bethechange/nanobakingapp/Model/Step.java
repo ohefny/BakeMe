@@ -3,7 +3,7 @@ package com.example.bethechange.nanobakingapp.Model;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by BeTheChange on 3/8/2017.
+ * Created by BeTheChange on 9/8/2017.
  */
 
 public class Step {
